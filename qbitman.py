@@ -24,7 +24,7 @@ def main():
 
     # stop any torrent that passes the seeding ratio threshold
     for torrent in qbt_client.torrents_info():
-        if torrent.ratio >= SEEDING_RATIO_THRESHOLD:
+        if torrent.ratio >= SEEDING_RATIO_THRESHOLD and torrent.state != 'pausedUP':
             print("Pausing %s (seeding ratio = %.02f)" % (torrent.name, torrent.ratio))
             qbt_client.torrents_pause(torrent.hash)
  
